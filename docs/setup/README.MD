@@ -7,6 +7,17 @@ First, make sure you have the following (required) software installed:
 - **Git**
 - **Text Editor/IDE** (Preferably VSCode)
 
+There are also some third-party services you will need:
+- **3 Aws S3 (or S3 Compatible) Buckets**. Vultr is a good option, as they only charge $5/Month for unlimited buckets, so using different buckets for development and production is cheap.
+- **Google Recaptcha V2 and V3 API Keys**. Go [here](https://www.google.com/recaptcha/about/) and click on "Admin Console" to create then.
+
+There are also some optional third-party services you can setup:
+- **PayPal Account & Rest API ClientID, Secret, and Email** Required for PayPal support, although PayPal support is currently disabled
+- **CoinPayments Account & Public and Private API Keys** Required for CoinPayments support
+- **Mailjet Account & Public and Private API Keys** Required for sending emails
+- **IP Quality Score Account and API Key** Required for fraud checks, VPN checks, etc
+
+## Final Note
 Remember that Google and Stackoverflow are your friends. If you get any errors, try Googling them: chances are, you aren't alone, and it may even be common. Only open issues or contact maintainers when you know the issue is with BlocksHub itself, and not your environment.
 
 ## 1) Pulling the Repo
@@ -27,7 +38,7 @@ npm i
 ```
 This will "i" (install) the node dependencies required for this project.
 
-***Windows Note:** Get any errors that mention `node-gyp`, c++ guilding, or "no compiler found"? Check out [C++ Errors](#c-errors)
+***Note:** Get any errors that mention `node-gyp`, c++ guilding, or "no compiler found"? Check out [C++ Errors](#c-errors)*
 
 ## 3) Configuration
 Make sure you have MySQL Database and a MySQL user with access to that Database. Also make sure you have saved your MySQL Username and Password somewhere (Please don't use the root account as you might accidentally drop a database, or expose a database!)
@@ -35,7 +46,7 @@ Make sure you have MySQL Database and a MySQL user with access to that Database.
 Create a file called `config.json` in the **root** of the project directory (for instance, inside the `web-backend` folder). Next, go through the JSON key information in [docs/config/README.MD](../config/README.MD) to see how to configure everything.
 
 ## 4) DB Migration
-Currently, you should have an empty database, so it's time to change that: run `npx knex migrate:latest` to start the Database migration. This creates all the neccesary DB Tables and starting data. This should take a minute or so.
+Currently, you should have an empty database, so it's time to change that: run `npx knex migrate:latest` to start the Database migration. This creates all the necessary DB Tables and starting data. This should take a minute or so.
 
 ## 5) Starting
 After everything is setup, run `npm start:dev` to start the development server. This should take about a minute, however, it may take longer (though anything over than 3 minutes likely indicates something is wrong!).
