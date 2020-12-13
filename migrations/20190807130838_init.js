@@ -4,7 +4,7 @@
 let prefix = ""; // Default is null. Used if you want to have multiple migrations for some reason
 exports.up = async (knex, Promise) => {
     // Create the Users Table
-    await knex.schema.createTable(prefix+'users', (table) => {
+    await knex.schema.createTable(prefix + 'users', (table) => {
         table.increments('id').primary();
         table.string("username", 32).notNullable();
         table.unique("username");
@@ -25,7 +25,7 @@ exports.up = async (knex, Promise) => {
         table.integer("is_banned", 1).notNullable().defaultTo(0);
     });
     // Create the user_avatar Table
-    await knex.schema.createTable(prefix+'user_avatar', (table) => {
+    await knex.schema.createTable(prefix + 'user_avatar', (table) => {
         table.increments('id').primary();
         // userid Foreign Key for users table
         table.integer("userid", 20).notNullable();
@@ -38,7 +38,7 @@ exports.up = async (knex, Promise) => {
     });
 
     // Create the user_avatarcolor Table
-    await knex.schema.createTable(prefix+'user_avatarcolor', (table) => {
+    await knex.schema.createTable(prefix + 'user_avatarcolor', (table) => {
         table.increments('id').primary();
         // userid Foreign Key for users table
         table.integer("userid", 20).notNullable();
@@ -57,7 +57,7 @@ exports.up = async (knex, Promise) => {
     });
 
     // Create the user_emails Table
-    await knex.schema.createTable(prefix+'user_emails', (table) => {
+    await knex.schema.createTable(prefix + 'user_emails', (table) => {
         table.increments('id').primary();
         // userid Foreign Key for users table
         table.integer("userid", 20).notNullable();
@@ -68,7 +68,7 @@ exports.up = async (knex, Promise) => {
     });
 
     // Create the user_inventory Table
-    await knex.schema.createTable(prefix+'user_inventory', (table) => {
+    await knex.schema.createTable(prefix + 'user_inventory', (table) => {
         table.increments('id').primary();
         table.integer("serial", 128).defaultTo(null);
         table.integer("catalog_id", 128).notNullable();
@@ -79,7 +79,7 @@ exports.up = async (knex, Promise) => {
     });
 
     // Create the user_ip Table
-    await knex.schema.createTable(prefix+'user_ip', (table) => {
+    await knex.schema.createTable(prefix + 'user_ip', (table) => {
         table.increments('id').primary();
         table.integer("userid", 20).defaultTo(null);
         table.string("ip_address", 255).notNullable();
@@ -88,7 +88,7 @@ exports.up = async (knex, Promise) => {
     });
 
     // Create the user_messages Table
-    await knex.schema.createTable(prefix+'user_messages', (table) => {
+    await knex.schema.createTable(prefix + 'user_messages', (table) => {
         table.increments('id').primary();
         table.integer("userid_to", 20).notNullable();
         table.integer("userid_from", 20).notNullable();
@@ -98,8 +98,8 @@ exports.up = async (knex, Promise) => {
         table.integer("message_read", 1).notNullable().defaultTo(0);
     });
 
-     // Create the user_moderation Table
-     await knex.schema.createTable(prefix+'user_moderation', (table) => {
+    // Create the user_moderation Table
+    await knex.schema.createTable(prefix + 'user_moderation', (table) => {
         table.increments('id').primary();
         table.integer("userid", 20).notNullable();
         table.string("reason", 256).notNullable();
@@ -109,7 +109,7 @@ exports.up = async (knex, Promise) => {
     });
 
     // Create the user_status Table
-    await knex.schema.createTable(prefix+'user_status', (table) => {
+    await knex.schema.createTable(prefix + 'user_status', (table) => {
         table.increments('id').primary();
         table.integer("userid", 20).notNullable();
         table.string("status", 255).notNullable();
@@ -119,7 +119,7 @@ exports.up = async (knex, Promise) => {
     // Catalog
 
     // Create the catalog Table
-    await knex.schema.createTable(prefix+'catalog', (table) => {
+    await knex.schema.createTable(prefix + 'catalog', (table) => {
         table.increments('id').primary();
         table.string("name", 256).notNullable();
         table.string("description", 1024).notNullable();
@@ -137,7 +137,7 @@ exports.up = async (knex, Promise) => {
     });
 
     // Create the catalog_comments Table
-    await knex.schema.createTable(prefix+'catalog_comments', (table) => {
+    await knex.schema.createTable(prefix + 'catalog_comments', (table) => {
         table.increments('id').primary();
         table.integer("catalog_id", 20).notNullable();
         table.integer("userid", 20).notNullable();
@@ -148,7 +148,7 @@ exports.up = async (knex, Promise) => {
     // Friends
 
     // Create the friendships Table
-    await knex.schema.createTable(prefix+'friendships', (table) => {
+    await knex.schema.createTable(prefix + 'friendships', (table) => {
         table.increments('id').primary();
         table.integer("userid_one", 128).notNullable();
         table.integer("userid_two", 128).notNullable();
@@ -156,7 +156,7 @@ exports.up = async (knex, Promise) => {
     });
 
     // Create the friend_request Table
-    await knex.schema.createTable(prefix+'friend_request', (table) => {
+    await knex.schema.createTable(prefix + 'friend_request', (table) => {
         table.increments('id').primary();
         table.integer("userid_requester", 128).notNullable();
         table.integer("userid_requestee", 128).notNullable();
@@ -165,7 +165,7 @@ exports.up = async (knex, Promise) => {
     // Groups
 
     // Create the groups Table
-    await knex.schema.createTable(prefix+'groups', (table) => {
+    await knex.schema.createTable(prefix + 'groups', (table) => {
         table.increments('id').primary();
         table.string("name", 75).notNullable();
         table.unique("name");
@@ -177,7 +177,7 @@ exports.up = async (knex, Promise) => {
     });
 
     // Create the group_members Table
-    await knex.schema.createTable(prefix+'group_members', (table) => {
+    await knex.schema.createTable(prefix + 'group_members', (table) => {
         table.increments('id').primary();
         table.integer("groupid", 20).notNullable();
         table.integer("userid", 20).notNullable();
@@ -185,7 +185,7 @@ exports.up = async (knex, Promise) => {
     });
 
     // Create the group_roles Table
-    await knex.schema.createTable(prefix+'group_roles', (table) => {
+    await knex.schema.createTable(prefix + 'group_roles', (table) => {
         table.increments('id').primary();
         table.string("name", 50).notNullable();
         table.string("description", 100).notNullable();
@@ -199,7 +199,7 @@ exports.up = async (knex, Promise) => {
     });
 
     // Create the group_shout Table
-    await knex.schema.createTable(prefix+'group_shout', (table) => {
+    await knex.schema.createTable(prefix + 'group_shout', (table) => {
         table.increments('id').primary();
         table.integer("groupid", 20).notNullable();
         table.integer("userid", 20).notNullable();
@@ -208,7 +208,7 @@ exports.up = async (knex, Promise) => {
     });
 
     // Create the group_wall Table
-    await knex.schema.createTable(prefix+'group_wall', (table) => {
+    await knex.schema.createTable(prefix + 'group_wall', (table) => {
         table.increments('id').primary();
         table.integer("groupid", 20).notNullable();
         table.integer("userid", 20).notNullable();
@@ -219,7 +219,7 @@ exports.up = async (knex, Promise) => {
     // Moderation
 
     // Create the moderation_ban Table
-    await knex.schema.createTable(prefix+'moderation_ban', (table) => {
+    await knex.schema.createTable(prefix + 'moderation_ban', (table) => {
         table.increments('id').primary();
         table.integer("userid", 20).notNullable();
         table.integer("userid_modified", 20).notNullable();
@@ -228,7 +228,7 @@ exports.up = async (knex, Promise) => {
     });
 
     // Create the moderation_currency Table
-    await knex.schema.createTable(prefix+'moderation_currency', (table) => {
+    await knex.schema.createTable(prefix + 'moderation_currency', (table) => {
         table.increments('id').primary();
         table.integer("userid", 20).notNullable();
         table.integer("userid_affected", 20).notNullable();
@@ -238,7 +238,7 @@ exports.up = async (knex, Promise) => {
     });
 
     // Create the moderation_give Table
-    await knex.schema.createTable(prefix+'moderation_give', (table) => {
+    await knex.schema.createTable(prefix + 'moderation_give', (table) => {
         table.increments('id').primary();
         table.integer("userid", 20).notNullable();
         table.integer("userid_to", 20).notNullable();
@@ -250,7 +250,7 @@ exports.up = async (knex, Promise) => {
     // Thumbnails
 
     // Create the thumbnails Table
-    await knex.schema.createTable(prefix+'thumbnails', (table) => {
+    await knex.schema.createTable(prefix + 'thumbnails', (table) => {
         table.increments('id').primary();
         table.string("type", 64).notNullable();
         table.integer("reference_id", 128).notNullable();
@@ -261,7 +261,7 @@ exports.up = async (knex, Promise) => {
     // Trades
 
     // Create the trades Table
-    await knex.schema.createTable(prefix+'trades', (table) => {
+    await knex.schema.createTable(prefix + 'trades', (table) => {
         table.increments('id').primary();
         table.string("userid_one", 20).notNullable();
         table.integer("userid_two", 20).notNullable();
@@ -270,7 +270,7 @@ exports.up = async (knex, Promise) => {
     });
 
     // Create the trade_items Table
-    await knex.schema.createTable(prefix+'trade_items', (table) => {
+    await knex.schema.createTable(prefix + 'trade_items', (table) => {
         table.increments('id').primary();
         table.integer("trade_id", 128).notNullable();
         table.integer("userinventory_id", 128).notNullable();
@@ -281,7 +281,7 @@ exports.up = async (knex, Promise) => {
     // Transactions
 
     // Create the transactions Table
-    await knex.schema.createTable(prefix+'transactions', (table) => {
+    await knex.schema.createTable(prefix + 'transactions', (table) => {
         table.increments('id').primary();
         table.integer("userid_to", 128).notNullable();
         table.integer("userid_from", 128).notNullable();
@@ -296,42 +296,37 @@ exports.up = async (knex, Promise) => {
 };
 
 exports.down = async (knex, Promise) => {
-    /**
-     * Since this is the initialization migration, we don't do anything here to prevent issues in production. Uncomment the following lines to enable dropping of tables.
-     */
-    let host = require("os").hostname();
-    if (host === "DESKTOP-FDRBVV0") {
-        await knex.schema.dropTable(prefix+"users");
-        await knex.schema.dropTable(prefix+"user_avatar");
-        await knex.schema.dropTable(prefix+"user_avatarcolor");
-        await knex.schema.dropTable(prefix+"user_emails");
-        await knex.schema.dropTable(prefix+"user_inventory");
-        await knex.schema.dropTable(prefix+"user_ip");
-        await knex.schema.dropTable(prefix+"user_messages");
-        await knex.schema.dropTable(prefix+"user_moderation");
-        await knex.schema.dropTable(prefix+"user_status");
-        // Catalog
-        await knex.schema.dropTable(prefix+"catalog");
-        await knex.schema.dropTable(prefix+"catalog_comments");
-        // Friends
-        await knex.schema.dropTable(prefix+"friendships");
-        await knex.schema.dropTable(prefix+"friend_request");
-        // Groups
-        await knex.schema.dropTable(prefix+"groups");
-        await knex.schema.dropTable(prefix+"group_members");
-        await knex.schema.dropTable(prefix+"group_roles");
-        await knex.schema.dropTable(prefix+"group_shout");
-        await knex.schema.dropTable(prefix+"group_wall");
-        // Moderation
-        await knex.schema.dropTable(prefix+"moderation_ban");
-        await knex.schema.dropTable(prefix+"moderation_give");
-        await knex.schema.dropTable(prefix+"moderation_currency");
-        // Thumbnails
-        await knex.schema.dropTable(prefix+"thumbnails");
-        // Trades
-        await knex.schema.dropTable(prefix+"trades");
-        await knex.schema.dropTable(prefix+"trade_items");
-        // Transactions
-        await knex.schema.dropTable(prefix+"transactions");
-    }
+    await knex.schema.dropTable(prefix + "users");
+    await knex.schema.dropTable(prefix + "user_avatar");
+    await knex.schema.dropTable(prefix + "user_avatarcolor");
+    await knex.schema.dropTable(prefix + "user_emails");
+    await knex.schema.dropTable(prefix + "user_inventory");
+    await knex.schema.dropTable(prefix + "user_ip");
+    await knex.schema.dropTable(prefix + "user_messages");
+    await knex.schema.dropTable(prefix + "user_moderation");
+    await knex.schema.dropTable(prefix + "user_status");
+    // Catalog
+    await knex.schema.dropTable(prefix + "catalog");
+    await knex.schema.dropTable(prefix + "catalog_comments");
+    // Friends
+    await knex.schema.dropTable(prefix + "friendships");
+    await knex.schema.dropTable(prefix + "friend_request");
+    // Groups
+    await knex.schema.dropTable(prefix + "groups");
+    await knex.schema.dropTable(prefix + "group_members");
+    await knex.schema.dropTable(prefix + "group_roles");
+    await knex.schema.dropTable(prefix + "group_shout");
+    await knex.schema.dropTable(prefix + "group_wall");
+    // Moderation
+    await knex.schema.dropTable(prefix + "moderation_ban");
+    await knex.schema.dropTable(prefix + "moderation_give");
+    await knex.schema.dropTable(prefix + "moderation_currency");
+    // Thumbnails
+    await knex.schema.dropTable(prefix + "thumbnails");
+    // Trades
+    await knex.schema.dropTable(prefix + "trades");
+    await knex.schema.dropTable(prefix + "trade_items");
+    // Transactions
+    await knex.schema.dropTable(prefix + "transactions");
+
 };
