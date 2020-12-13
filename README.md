@@ -1,22 +1,5 @@
-# dev setup
-0. pull repository
-1. `npm i`
-2. install mysql and redis
-3. `npm run start:dev`
-4. wait for compilation
-5. ...
-6. profit
+# BlocksHub Web Backend
 
-# env
-```SECRET_ENCRYPTION_KEY```
-32-bit key used for encrypting config.json file
+Documentation is available in [docs/README.MD](docs/README.MD).
 
----
-
-```SECRET_ENCRYPTION_IV```
-8-bit iv used for encrypting config.json file
-
----
-
-```IS_STAGING```
-If set to 1, disables captchas and enables certain features that should only be accessible in staging envs
+**Notice:** As a reminder, this Repository is no longer maintained. It exists purely for educational purposes, and any other use cases are strongly discouraged.
