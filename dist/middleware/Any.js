@@ -71,7 +71,7 @@ exports.generateCspWithNonce = async (req, res, next, randomBytesFunction = rand
     });
     res.locals.version = await randomBytesFunction(8);
     res.locals.nonce = nonce;
-    res.locals.javascript = exports.getJavascript(nonce, exports.version);
+    res.locals.javascript = ``;
     next();
 };
 exports.getIp = (req) => {
@@ -85,16 +85,6 @@ exports.getIp = (req) => {
         }
         return req.connection.remoteAddress;
     }
-};
-exports.getJavascript = (nonce, version) => {
-    return `
-        <script nonce="${nonce}" src="/js/warning.js"></script>
-        <script nonce="${nonce}" src="/js/bundle/sentry.bundle.js?v=${version}"></script>
-        <script nonce="${nonce}">
-            Sentry.init({ dsn: 'https://a5c3a9adef4a4e149a1e2d1651b9da4d@sentry.io/2505702' });
-        </script>
-        <script nonce="${nonce}" src="/js/bundle/main.bundle.js?v=${version}"></script>
-        <script nonce="${nonce}" src="/js/bundle/bootstrap.bundle.js?v=${version}"></script>`;
 };
 exports.default = async (req, res, next, UserModel = user_1.default, ModModel = moderation_1.default, setSession = auth_1.setSession, regenCsrf = auth_1.regenCsrf) => {
     let p = prom.get('middleware_any', 'middleware for all API requests');
