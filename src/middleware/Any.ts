@@ -105,7 +105,7 @@ export const generateCspWithNonce = async (req: Request, res: Response, next: Ne
     // Nonce
     res.locals.nonce = nonce;
     // Setup js
-    res.locals.javascript = getJavascript(nonce, version);
+    res.locals.javascript = ``;
     // OK
     next();
 }
@@ -122,16 +122,6 @@ export const getIp = (req: Request): string => {
     }
 }
 
-export const getJavascript = (nonce: string, version: string): string => {
-    return `
-        <script nonce="${nonce}" src="/js/warning.js"></script>
-        <script nonce="${nonce}" src="/js/bundle/sentry.bundle.js?v=${version}"></script>
-        <script nonce="${nonce}">
-            Sentry.init({ dsn: 'https://a5c3a9adef4a4e149a1e2d1651b9da4d@sentry.io/2505702' });
-        </script>
-        <script nonce="${nonce}" src="/js/bundle/main.bundle.js?v=${version}"></script>
-        <script nonce="${nonce}" src="/js/bundle/bootstrap.bundle.js?v=${version}"></script>`;
-}
 export default async (req: Request, res: Response, next: NextFunction, UserModel = UserDAL, ModModel = ModDAL, setSession = setSessionNormal, regenCsrf = regenCsrfNormal): Promise<void> => {
     let p = prom.get('middleware_any', 'middleware for all API requests');
     p.counter.inc();
