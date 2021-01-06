@@ -74,7 +74,7 @@
         "apexcharts": "^3.19.3",
         "archiver": "^5.0.0",
         "aws-sdk": "^2.610.0",
-        "axios": "^0.19.2",
+        "axios": "^0.21.1",
         "axios-cached-dns-resolve": "^0.5.2",
         "axios-cookiejar-support": "^0.5.1",
         "axios-with-dns": "^1.0.4",
