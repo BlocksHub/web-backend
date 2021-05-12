@@ -46,7 +46,7 @@
         "@sentry/node": "^5.12.2",
         "@tsed/ajv": "5.36.0",
         "@tsed/common": "5.36.0",
-        "@tsed/core": "5.36.0",
+        "@tsed/core": "5.65.7",
         "@tsed/multipartfiles": "^5.36.0",
         "@tsed/swagger": "5.36.0",
         "@tsed/testing": "5.36.0",
